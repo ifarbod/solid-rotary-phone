@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calineva - The Ultimate GTA San Andreas Multiplayer Mod</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Experience the definitive multiplayer mod for GTA San Andreas with unprecedented features, performance, and cross-platform capability.">
+  <meta name="keywords" content="GTA San Andreas, multiplayer mod, Calineva, GTA SA, GTA SA-MP, gaming, modding, cross-platform, Android, PC">
+  <meta name="author" content="iFarbod">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://calineva.ir/">
+  <meta property="og:title" content="Calineva - The Ultimate GTA San Andreas Multiplayer Mod">
+  <meta property="og:description" content="Experience the definitive multiplayer mod for GTA San Andreas with unprecedented features, performance, and cross-platform capability.">
+  <meta property="og:image" content="https://calineva.ir/calineva-800x450.jpg">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://calineva.ir/">
+  <meta property="twitter:title" content="Calineva - The Ultimate GTA San Andreas Multiplayer Mod">
+  <meta property="twitter:description" content="Experience the definitive multiplayer mod for GTA San Andreas with unprecedented features, performance, and cross-platform capability.">
+  <meta property="twitter:image" content="https://calineva.ir/calineva-800x450.jpg">
+
+  <!-- Icons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#6B21A8">
+  <meta name="color-scheme" content="dark only">
+  <meta name="darkreader-lock"> <!-- This is for dark reader, don't remove it -->
+  <meta name="msapplication-TileColor" content="#6B21A8">
+
+  <link rel="icon" href="calineva3.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'primary': '#6B21A8', // Purple 800
+            'primary-dark': '#4C1D95', // Purple 900
+            'primary-light': '#8B5CF6', // Purple 500
+            'secondary': '#1F2937', // Gray 800
+            'dark': '#111827', // Gray 900
+            'darker': '#030712', // Gray 950
+          },
+          fontFamily: {
+            'sans': ['Inter', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <style type="text/css">
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+    :root {
+      --primary: #6B21A8;
+      --primary-dark: #4C1D95;
+      --primary-light: #8B5CF6;
+      --secondary: #1F2937;
+      --dark: #111827;
+      --darker: #030712;
+      --bg-color: #0f0f0f;
+      --text-color: #f3f4f6;
+    }
+
+    [data-theme="light"] {
+      --primary: #7C3AED;
+      --primary-dark: #5B21B6;
+      --primary-light: #A78BFA;
+      --secondary: #E5E7EB;
+      --dark: #F3F4F6;
+      --darker: #F9FAFB;
+      --bg-color: #ffffff;
+      --text-color: #111827;
+      --card-bg: #ffffff;
+      --card-border: #E5E7EB;
+    }
+
+    body {
+        background-color: var(--bg-color);
+        background-image: url('assets/images/background-ambient.jpg');
+        background-attachment: fixed;
+        background-size: cover;
+        background-blend-mode: overlay;
+        color: var(--text-color);
+    }
+
+    /* Add a purple tint and blur effect to the image */
+    body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(107, 33, 168, 0.3);
+    backdrop-filter: blur(10px);
+    z-index: -1;
+    }
+
+    [data-theme="light"] body::before {
+      background: rgba(124, 58, 237, 0.1);
+    }
+
+    .glow {
+      text-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+    }
+
+    .btn-hover:hover {
+      box-shadow: 0 0 15px rgba(139, 92, 246, 0.5);
+      transform: translateY(-2px);
+    }
+
+    .card-hover:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px -5px rgba(107, 33, 168, 0.4);
+    }
+
+    .download-btn {
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.4);
+      }
+      70% {
+        box-shadow: 0 0 0 10px rgba(139, 92, 246, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(139, 92, 246, 0);
+      }
+    }
+
+    .scroll-up-btn {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--primary);
+      color: white;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.3s;
+      z-index: 1000;
+    }
+
+    .scroll-up-btn.visible {
+      opacity: 1;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: var(--darker);
+      z-index: 100;
+      transform: translateX(-100%);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      opacity: 0.98;
+    }
+
+    .mobile-menu.active {
+      transform: translateX(0);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 24px;
+      height: 18px;
+      position: relative;
+      cursor: pointer;
+      z-index: 101;
+      transition: transform 0.3s ease;
+    }
+
+    .hamburger .line {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background-color: currentColor;
+      transition: all 0.3s ease;
+      transform-origin: center;
+    }
+
+    .hamburger.active .line:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.active .line:nth-child(2) {
+      opacity: 0;
+      transform: translateX(-10px);
+    }
+
+    .hamburger.active .line:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    /* FAQ Animations */
+    .faq-item {
+      transition: all 0.3s ease;
+    }
+
+    .faq-item.active {
+      background: var(--secondary);
+    }
+
+    .faq-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+      opacity: 0;
+    }
+
+    .faq-content.active {
+      max-height: 500px;
+      opacity: 1;
+    }
+
+    .faq-icon {
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item.active .faq-icon {
+      transform: rotate(180deg);
+    }
+
+    /* Player Counter */
+    .player-counter {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: var(--secondary);
+      border-radius: 9999px;
+      font-weight: 500;
+    }
+
+    .player-dot {
+      width: 8px;
+      height: 8px;
+      background: #10B981;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+      }
+      70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+      }
+      100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+      }
+    }
+
+    /* Slideshow styles */
+    .slideshow-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+      z-index: 1;
+      transform-origin: center center;
+    }
+
+    .slide.active {
+      opacity: 1;
+      z-index: 2;
+      animation: kenBurns 20s ease-in-out forwards;
+    }
+
+    @keyframes kenBurns {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1) translate(-1%, -1%);
+      }
+      100% {
+        transform: scale(1.05) translate(1%, 1%);
+      }
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.6) saturate(1.2);
+      transform: scale(1.01); /* Slight scale to prevent edge gaps during animation */
+      transition: transform 0.3s ease-out;
+      max-resolution: 3840dpi; /* Support for 4K */
+    }
+    
+    .slide img.loaded {
+      will-change: transform; /* Performance optimization for animations */
+    }
+
+    [data-theme="light"] .slide img {
+      filter: brightness(0.7) saturate(1.2);
+    }
+
+    /* Mobile menu close button */
+    .mobile-menu-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      margin-left: 1rem;
+      position: relative;
+      z-index: 101;
+    }
+    
+    /* Re-configure hamburger to work with existing HTML */
+    .hamburger {
+      width: 24px;
+      height: 18px;
+      position: relative;
+      cursor: pointer;
+      z-index: 101;
+    }
+    
+    .hamburger .line {
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 2px !important;
+      background-color: currentColor;
+      transition: all 0.3s ease;
+      transform-origin: center;
+    }
+    
+    .hamburger .line:nth-child(1) {
+      top: 0;
+    }
+    
+    .hamburger .line:nth-child(2) {
+      top: 8px;
+    }
+    
+    .hamburger .line:nth-child(3) {
+      top: 16px;
+    }
+    
+    .hamburger.active .line:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+    
+    .hamburger.active .line:nth-child(2) {
+      opacity: 0;
+      transform: translateX(-10px);
+    }
+    
+    .hamburger.active .line:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+    
+    /* Responsive optimizations */
+    @media (min-width: 1536px) {
+      .container {
+        max-width: 1440px;
+      }
+    }
+    
+    @media (min-width: 2560px) {
+      .container {
+        max-width: 1800px;
+      }
+      
+      html {
+        font-size: 18px;
+      }
+    }
+    
+    /* Responsive hero height adjustments */
+    @media (max-height: 800px) {
+      section.min-h-\[90vh\] {
+        min-height: 100vh;
+      }
+    }
+    
+    /* Fix for potential gap between sections */
+    section + section {
+      margin-top: -1px;
+    }
+  </style>
+</head>
+<body class="font-sans text-gray-200 min-h-screen">
+  <!-- Header/Nav -->
+  <header class="sticky top-0 z-50 bg-darker/80 backdrop-blur-md border-b border-primary/20">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center py-4">
+        <div class="flex items-center">
+          <img src="assets/images/calineva-logo.png" width="32" height="32" alt="Calineva" style="transform:rotate(45deg);"/>
+
+          <span class="ml-2 text-2xl font-bold text-white glow">Calineva</span>
+        </div>
+        <nav class="hidden md:flex space-x-6">
+          <a href="#features" class="hover:text-primary-light transition-colors">Features</a>
+          <a href="#community" class="hover:text-primary-light transition-colors">Community</a>
+          <a href="#documentation" class="hover:text-primary-light transition-colors">Documentation</a>
+          <a href="#faq" class="hover:text-primary-light transition-colors">FAQ</a>
+        </nav>
+        <div>
+          <div class="flex items-center space-x-4">
+            <a href="#download" class="hidden sm:inline-block bg-gradient-to-r from-primary to-primary-light text-white font-medium px-4 py-2 rounded-lg transition-all duration-300 btn-hover download-btn">
+              Download Now
+            </a>
+            <a href="https://patreon.com" title="Join our Pateron!" class="hidden sm:inline-flex items-center justify-center text-primary-light hover:text-white transition-colors">
+              <svg class="h-6 w-6" viewBox="0 0 1080 1080" fill="currentColor">
+                <path d="M1033.05,324.45c-0.19-137.9-107.59-250.92-233.6-291.7c-156.48-50.64-362.86-43.3-512.28,27.2
+                C106.07,145.41,49.18,332.61,47.06,519.31c-1.74,153.5,13.58,557.79,241.62,560.67c169.44,2.15,194.67-216.18,273.07-321.33
+                c55.78-74.81,127.6-95.94,216.01-117.82C929.71,603.22,1033.27,483.3,1033.05,324.45z"/>
+              </svg>
+            </a>
+            <a href="https://t.me/calineva1" title="Join our Telegram!" class="hidden sm:inline-flex items-center justify-center text-primary-light hover:text-white transition-colors">
+              <svg class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+              </svg>
+            </a>
+            <button id="theme-toggle" class="hidden sm:inline-flex items-center justify-center text-primary-light hover:text-white transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+              </svg>
+            </button>
+            <button class="mobile-menu-btn md:hidden text-gray-300">
+              <div class="hamburger">
+                <div class="line bg-current"></div>
+                <div class="line bg-current"></div>
+                <div class="line bg-current"></div>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu">
+    <div class="container mx-auto px-4 py-8">
+      <div class="flex justify-between items-center mb-8">
+        <div class="flex items-center">
+          <a href="/" class="flex items-center">
+            <img src="assets/images/calineva-logo.png" width="32" height="32" alt="Calineva" style="transform:rotate(45deg);"/>
+            <span class="ml-2 text-2xl font-bold text-white glow">Calineva</span>
+          </a>
+        </div>
+        <button class="mobile-menu-btn text-gray-300">
+          <div class="hamburger">
+            <div class="line bg-current"></div>
+            <div class="line bg-current"></div>
+            <div class="line bg-current"></div>
+          </div>
+        </button>
+      </div>
+      <nav class="flex flex-col space-y-6">
+        <a href="#features" class="text-2xl text-white hover:text-primary-light transition-colors">Features</a>
+        <a href="#community" class="text-2xl text-white hover:text-primary-light transition-colors">Community</a>
+        <a href="#documentation" class="text-2xl text-white hover:text-primary-light transition-colors">Documentation</a>
+        <a href="#faq" class="text-2xl text-white hover:text-primary-light transition-colors">FAQ</a>
+        <a href="#download" class="w-full bg-gradient-to-r from-primary to-primary-light text-white font-medium px-6 py-3 rounded-lg transition-all duration-300 btn-hover download-btn text-center">
+          Download Now
+        </a>
+        <div class="flex space-x-4 mt-8">
+          <a href="https://patreon.com" class="text-primary-light hover:text-white transition-colors">
+            <svg class="h-8 w-8" viewBox="0 0 1080 1080" fill="currentColor">
+              <path d="M1033.05,324.45c-0.19-137.9-107.59-250.92-233.6-291.7c-156.48-50.64-362.86-43.3-512.28,27.2
+              C106.07,145.41,49.18,332.61,47.06,519.31c-1.74,153.5,13.58,557.79,241.62,560.67c169.44,2.15,194.67-216.18,273.07-321.33
+              c55.78-74.81,127.6-95.94,216.01-117.82C929.71,603.22,1033.27,483.3,1033.05,324.45z"/>
+            </svg>
+          </a>
+          <a href="https://t.me/calineva1" class="text-primary-light hover:text-white transition-colors">
+            <svg class="h-8 w-8" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+            </svg>
+          </a>
+          <button id="theme-toggle-mobile" class="text-primary-light hover:text-white transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+            </svg>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="py-16 sm:py-24 relative overflow-hidden min-h-[90vh] md:min-h-screen flex items-center">
+    <div class="absolute inset-0 z-0">
+      <div class="slideshow-container">
+        <div class="slide active">
+          <img src="assets/images/calineva-screenshot-1.jpg" alt="Calineva Background Hero Screenshot 1" class="w-full h-full object-cover" />
+        </div>
+        <div class="slide">
+          <img src="assets/images/calineva-screenshot-2.jpg" alt="Calineva Background Hero Screenshot 2" class="w-full h-full object-cover" />
+        </div>
+        <div class="slide">
+          <img src="assets/images/calineva-screenshot-3.jpg" alt="Calineva Background Hero Screenshot 3" class="w-full h-full object-cover" />
+        </div>
+      </div>
+      <div class="absolute inset-0 bg-gradient-to-r from-darker/90 via-purple-900/50 to-darker/70 z-10"></div>
+    </div>
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <div class="player-counter mb-4 sm:mb-6">
+            <div class="player-dot"></div>
+            <span class="text-white">1,234 players online</span>
+          </div>
+          <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold mb-4 sm:mb-6 leading-tight">
+            <span class="text-white">Redefine</span>
+            <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary-light to-purple-400"> San Andreas</span>
+            <span class="text-white"> Modding</span>
+          </h1>
+          <p class="text-lg sm:text-xl text-gray-300 mb-6 sm:mb-8 max-w-2xl">Experience the <i>definitive</i> multiplayer mod for GTA San Andreas with unprecedented features, performance, and cross-platform capability.</p>
+          <div class="flex flex-wrap gap-3 sm:gap-4">
+            <a href="#download" class="bg-gradient-to-r from-primary to-primary-light text-white font-medium px-4 sm:px-6 py-2 sm:py-3 rounded-lg transition-all duration-300 btn-hover">
+              Download Now
+            </a>
+            <a href="#documentation" class="bg-secondary hover:bg-secondary/80 text-white font-medium px-4 sm:px-6 py-2 sm:py-3 rounded-lg transition-all duration-300">
+              Documentation
+            </a>
+          </div>
+        </div>
+        <div class="relative hidden lg:block">
+          <div class="absolute -inset-0.5 bg-gradient-to-r from-primary to-primary-light rounded-2xl blur opacity-50"></div>
+          <div class="relative bg-darker rounded-2xl overflow-hidden shadow-2xl">
+            <img src="assets/images/calineva-highlight-6.jpg" alt="Calineva Highlight" class="w-full h-auto rounded-2xl transform hover:scale-105 transition-transform duration-700" />
+          </div>
+        </div>
+      </div>
+      
+      <!-- Added highlight image for mobile display at bottom of hero -->
+      <div class="mt-12 block lg:hidden">
+        <div class="relative">
+          <div class="absolute -inset-0.5 bg-gradient-to-r from-primary to-primary-light rounded-2xl blur opacity-50"></div>
+          <div class="relative bg-darker rounded-2xl overflow-hidden shadow-2xl">
+            <img src="assets/images/calineva-highlight-6.jpg" alt="Calineva Highlight" class="w-full h-auto rounded-2xl transform hover:scale-105 transition-transform duration-700" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="py-16 bg-gradient-to-b from-darker to-dark">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-white">Cutting-Edge Features</h2>
+        <p class="text-xl text-gray-300 max-w-3xl mx-auto">Calineva redefines what's possible in a GTA San Andreas multiplayer mod.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Feature 1 -->
+        <div class="bg-secondary/50 rounded-xl p-6 border border-primary/20 transition-all duration-300 card-hover">
+          <div class="bg-primary/20 p-3 rounded-lg w-14 h-14 flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary-light" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2 text-white">Developer Friendly</h3>
+          <p class="text-gray-300">Comprehensive API with extensive documentation and intuitive scripting interface for developers to create incredible custom content.</p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="bg-secondary/50 rounded-xl p-6 border border-primary/20 transition-all duration-300 card-hover">
+          <div class="bg-primary/20 p-3 rounded-lg w-14 h-14 flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary-light" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6m-3 3v3" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2 text-white">Synced NPC AI</h3>
+          <p class="text-gray-300">The game's population and traffic are fully synchronized across all clients, creating a seamless and immersive PvE experience with worlds that never feel empty - unlike previous mods.</p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="bg-secondary/50 rounded-xl p-6 border border-primary/20 transition-all duration-300 card-hover">
+          <div class="bg-primary/20 p-3 rounded-lg w-14 h-14 flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary-light" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2 text-white">High Player Counts</h3>
+          <p class="text-gray-300">Support for massive player counts with optimized networking and server infrastructure to maintain smooth gameplay.</p>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="bg-secondary/50 rounded-xl p-6 border border-primary/20 transition-all duration-300 card-hover">
+          <div class="bg-primary/20 p-3 rounded-lg w-14 h-14 flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary-light" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2 text-white">Mobile Support</h3>
+          <p class="text-gray-300">Full Android compatibility with cross-play between PC and mobile platforms, bringing the multiplayer experience anywhere you go.</p>
+        </div>
+
+        <!-- Feature 5 -->
+        <div class="bg-secondary/50 rounded-xl p-6 border border-primary/20 transition-all duration-300 card-hover">
+          <div class="bg-primary/20 p-3 rounded-lg w-14 h-14 flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary-light" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2 text-white">Voice Chat</h3>
+          <p class="text-gray-300">Crystal-clear voice chat with advanced noise cancellation technology for seamless communication between players.</p>
+        </div>
+
+        <!-- Feature 6 -->
+        <div class="bg-secondary/50 rounded-xl p-6 border border-primary/20 transition-all duration-300 card-hover">
+          <div class="bg-primary/20 p-3 rounded-lg w-14 h-14 flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary-light" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2 text-white">Performance Optimized</h3>
+          <p class="text-gray-300">Highly optimized code base for maximum performance across all platforms, ensuring smooth gameplay even on lower-end systems.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Download Section -->
+  <section id="download" class="py-16">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-white">Download Calineva</h2>
+        <p class="text-xl text-gray-300 max-w-3xl mx-auto">Get started with Calineva in minutes. Choose the version that's right for you.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <!-- PC Version -->
+        <div class="bg-secondary/50 rounded-xl p-8 border border-primary/20 transition-all duration-300 card-hover">
+          <div class="text-center mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-primary-light mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            <h3 class="text-2xl font-bold mt-4 text-white">PC Version</h3>
+            <p class="text-gray-300 mt-2">Compatible with Windows 10+</p>
+          </div>
+          <div class="text-center mt-6">
+            <p class="text-sm text-gray-400 mb-2">Version 0.3.7 | 89.4 MB</p>
+            <a href="#" class="inline-block w-full bg-gradient-to-r from-primary to-primary-light text-white font-medium px-6 py-3 rounded-lg transition-all duration-300 btn-hover">
+              Download for Windows
+            </a>
+          </div>
+        </div>
+
+        <!-- Android Version -->
+        <div class="bg-secondary/50 rounded-xl p-8 border border-primary/20 transition-all duration-300 card-hover">
+          <div class="text-center mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-primary-light mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+            </svg>
+            <h3 class="text-2xl font-bold mt-4 text-white">Android Version</h3>
+            <p class="text-gray-300 mt-2">Compatible with Android 7.0+</p>
+          </div>
+          <div class="text-center mt-6">
+            <p class="text-sm text-gray-400 mb-2">Version 0.3.7 | 76.2 MB</p>
+            <a href="#" class="inline-block w-full bg-gradient-to-r from-primary to-primary-light text-white font-medium px-6 py-3 rounded-lg transition-all duration-300 btn-hover">
+              Download for Android
+            </a>
+          </div>
+        </div>
+
+        <!-- Server Files -->
+        <div class="bg-secondary/50 rounded-xl p-8 border border-primary/20 transition-all duration-300 card-hover">
+          <div class="text-center mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-primary-light mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
+            </svg>
+            <h3 class="text-2xl font-bold mt-4 text-white">Dedicated Server</h3>
+            <p class="text-gray-300 mt-2">Host your own server on a VPS</p>
+          </div>
+          <div class="text-center mt-6">
+            <p class="text-sm text-gray-400 mb-2">Version 0.3.7 | 32.1 MB</p>
+            <a href="#" class="inline-block w-full bg-gradient-to-r from-primary to-primary-light text-white font-medium px-6 py-3 rounded-lg transition-all duration-300 btn-hover">
+              Join Early Access Program
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-16 max-w-4xl mx-auto text-center">
+        <h3 class="text-xl font-bold mb-4 text-white">System Requirements</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- PC Requirements -->
+          <div class="bg-secondary/30 rounded-xl p-6">
+            <h4 class="text-lg font-medium mb-3 text-primary-light">PC Requirements</h4>
+            <ul class="text-gray-300 space-y-2 text-left ml-6">
+              <li>OS: Windows Vista or newer</li>
+              <li>CPU: 1.5 GHz Dual Core</li>
+              <li>RAM: 2 GB</li>
+              <li>GPU: 512 MB VRAM</li>
+              <li>Storage: 1 GB available space</li>
+              <li>Network: Broadband Internet connection</li>
+            </ul>
+          </div>
+
+          <!-- Android Requirements -->
+          <div class="bg-secondary/30 rounded-xl p-6">
+            <h4 class="text-lg font-medium mb-3 text-primary-light">Android Requirements</h4>
+            <ul class="text-gray-300 space-y-2 text-left ml-6">
+              <li>OS: Android 7.0 or newer</li>
+              <li>CPU: 1.5 GHz Quad Core</li>
+              <li>RAM: 2 GB</li>
+              <li>Storage: 1 GB available space</li>
+              <li>Network: Wi-Fi or Mobile Data</li>
+              <li>GTA: SA installed on device</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Documentation Section -->
+  <section id="documentation" class="py-16 bg-gradient-to-b from-dark to-darker">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-white">Documentation</h2>
+        <p class="text-xl text-gray-300 max-w-3xl mx-auto">Everything you need to know about Calineva, from installation to advanced scripting.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Doc Category 1 -->
+        <div class="bg-secondary/30 rounded-xl p-6 border border-primary/20 transition-all duration-300 card-hover">
+          <h3 class="text-xl font-bold mb-4 text-white">Getting Started</h3>
+          <ul class="space-y-3">
+            <li>
+              <a href="#" class="text-gray-300 hover:text-primary-light flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-primary-light" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                Installation Guide
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-300 hover:text-primary-light flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-primary-light" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                First Steps
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-300 hover:text-primary-light flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-primary-light" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                Basic Commands
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-300 hover:text-primary-light flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-primary-light" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                Troubleshooting
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Doc Category 2 -->
+        <div class="bg-secondary/30 rounded-xl p-6 border border-primary/20 transition-all duration-300 card-hover">
+          <h3 class="text-xl font-bold mb-4 text-white">Server Administration</h3>
+          <ul class="space-y-3">
+            <li>
+              <a href="#" class="text-gray-300 hover:text-primary-light flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-primary-light" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                Server Setup
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-300 hover:text-primary-light flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-primary-light" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                Configuration Guide
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-300 hover:text-primary-light flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-primary-light" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                Admin Commands
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-300 hover:text-primary-light flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-primary-light" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                Performance Optimization
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Doc Category 3 -->
+        <div class="bg-secondary/30 rounded-xl p-6 border border-primary/20 transition-all duration-300 card-hover">
+          <h3 class="text-xl font-bold mb-4 text-white">Developer Resources</h3>
+          <ul class="space-y-3">
+            <li>
+              <a href="#" class="text-gray-300 hover:text-primary-light flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-primary-light" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                API Documentation
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-300 hover:text-primary-light flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-primary-light" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                Scripting Guide
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-300 hover:text-primary-light flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-primary-light" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                Code Samples
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-300 hover:text-primary-light flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-primary-light" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                Plugin Development
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-12 text-center">
+        <a href="#" class="inline-flex items-center px-6 py-3 bg-secondary text-white font-medium rounded-lg transition-all duration-300 hover:bg-secondary/80">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+          </svg>
+          Full Documentation
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Community Links -->
+  <section class="py-16">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-white">Join Our Community</h2>
+        <p class="text-xl text-gray-300 max-w-3xl mx-auto">Connect with other players and stay up to date with the latest Calineva news and updates.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 max-w-5xl mx-auto">
+        <!-- Discord -->
+        <a href="https://discord.gg/calineva" class="bg-secondary/30 rounded-xl p-6 border border-primary/20 flex flex-col items-center justify-center transition-all duration-300 card-hover">
+          <svg class="h-12 w-12 text-primary-light mb-4" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20.317 4.492c-1.53-.69-3.17-1.2-4.885-1.49a.075.075 0 0 0-.079.036c-.21.385-.403.775-.558 1.17a19.39 19.39 0 0 0-5.582 0 12.66 12.66 0 0 0-.565-1.17.077.077 0 0 0-.079-.036 20.29 20.29 0 0 0-4.885 1.49.07.07 0 0 0-.032.027C.533 9.058-.32 13.499.099 17.872a.082.082 0 0 0 .031.057 20.52 20.52 0 0 0 6.15 3.056.077.077 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.995a.076.076 0 0 0-.041-.106 13.61 13.61 0 0 1-1.939-.93.077.077 0 0 1-.008-.128c.13-.097.261-.198.386-.3a.074.074 0 0 1 .078-.01c3.927 1.79 8.18 1.79 12.061 0a.074.074 0 0 1 .078.01c.125.102.255.204.386.3a.077.077 0 0 1-.006.127c-.62.36-1.266.668-1.94.932a.076.076 0 0 0-.041.106c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 20.44 20.44 0 0 0 6.152-3.056.076.076 0 0 0 .032-.057c.5-5.177-.838-9.674-3.549-13.353a.06.06 0 0 0-.031-.027ZM8.02 15.33c-1.182 0-2.157-1.086-2.157-2.42 0-1.338.956-2.424 2.157-2.424 1.21 0 2.176 1.097 2.157 2.425 0 1.333-.956 2.42-2.157 2.42Zm7.975 0c-1.183 0-2.157-1.086-2.157-2.42 0-1.338.955-2.424 2.157-2.424 1.21 0 2.176 1.097 2.157 2.425 0 1.333-.946 2.42-2.157 2.42Z"/>
+          </svg>
+          <span class="text-white font-medium">Discord</span>
+        </a>
+
+        <!-- GitHub -->
+        <a href="https://github.com/calineva" class="bg-secondary/30 rounded-xl p-6 border border-primary/20 flex flex-col items-center justify-center transition-all duration-300 card-hover">
+          <svg class="h-12 w-12 text-primary-light mb-4" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          <span class="text-white font-medium">GitHub</span>
+        </a>
+
+        <!-- Telegram -->
+        <a href="https://t.me/calineva1" class="bg-secondary/30 rounded-xl p-6 border border-primary/20 flex flex-col items-center justify-center transition-all duration-300 card-hover">
+          <svg class="h-12 w-12 text-primary-light mb-4" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+          </svg>
+          <span class="text-white font-medium">Telegram</span>
+        </a>
+
+        <!-- X (Twitter) -->
+        <a href="https://x.com/calineva" class="bg-secondary/30 rounded-xl p-6 border border-primary/20 flex flex-col items-center justify-center transition-all duration-300 card-hover">
+          <svg class="h-12 w-12 text-primary-light mb-4" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/>
+          </svg>
+          <span class="text-white font-medium">X (Twitter)</span>
+        </a>
+
+        <!-- YouTube -->
+        <a href="https://youtu.be/calineva" class="bg-secondary/30 rounded-xl p-6 border border-primary/20 flex flex-col items-center justify-center transition-all duration-300 card-hover">
+            <svg class="h-12 w-12 text-primary-light mb-4" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+            <span class="text-white font-medium">YouTube</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="py-16 bg-gradient-to-b from-darker to-dark">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-white">Frequently Asked Questions</h2>
+        <p class="text-xl text-gray-300 max-w-3xl mx-auto">Find answers to the most common questions about Calineva.</p>
+      </div>
+
+      <div class="max-w-4xl mx-auto space-y-6">
+        <!-- FAQ Item 1 -->
+        <div class="faq-item bg-secondary/30 rounded-xl overflow-hidden border border-primary/20">
+          <button class="flex justify-between items-center w-full px-6 py-4 text-left">
+            <span class="text-lg font-medium text-white">What is Calineva?</span>
+            <svg class="h-6 w-6 text-primary-light faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="faq-content px-6">
+            <p class="text-gray-300 pb-4">Calineva is a modern multiplayer modification for GTA San Andreas, designed to enhance the original game with multiplayer capabilities. It allows players to enjoy San Andreas with friends in a persistent online world with many unique features not found in other multiplayer mods.</p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 2 -->
+        <div class="faq-item bg-secondary/30 rounded-xl overflow-hidden border border-primary/20">
+          <button class="flex justify-between items-center w-full px-6 py-4 text-left">
+            <span class="text-lg font-medium text-white">How is Calineva different from other multiplayer mods?</span>
+            <svg class="h-6 w-6 text-primary-light faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="faq-content px-6">
+            <p class="text-gray-300 pb-4">Calineva stands out with its mobile support, cross-platform gameplay between PC and Android, synchronized NPC AI, high player counts, integrated voice chat with noise cancellation, and a developer-friendly API. The mod is built with modern technologies to ensure better performance and stability.</p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 3 -->
+        <div class="faq-item bg-secondary/30 rounded-xl overflow-hidden border border-primary/20">
+          <button class="flex justify-between items-center w-full px-6 py-4 text-left">
+            <span class="text-lg font-medium text-white">Do I need the original GTA San Andreas to play?</span>
+            <svg class="h-6 w-6 text-primary-light faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="faq-content px-6">
+            <p class="text-gray-300 pb-4">Yes, you need a legitimate copy of GTA San Andreas installed on your device. Calineva is a modification that works with the base game and requires its files to function properly.</p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 4 -->
+        <div class="faq-item bg-secondary/30 rounded-xl overflow-hidden border border-primary/20">
+          <button class="flex justify-between items-center w-full px-6 py-4 text-left">
+            <span class="text-lg font-medium text-white">Can I host my own server?</span>
+            <svg class="h-6 w-6 text-primary-light faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="faq-content px-6">
+            <p class="text-gray-300 pb-4">Absolutely! You can download the server files from our website and set up your own Calineva server. We provide comprehensive documentation on server setup, configuration, and management to help you get started.</p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 5 -->
+        <div class="faq-item bg-secondary/30 rounded-xl overflow-hidden border border-primary/20">
+          <button class="flex justify-between items-center w-full px-6 py-4 text-left">
+            <span class="text-lg font-medium text-white">How many players can join a single server?</span>
+            <svg class="h-6 w-6 text-primary-light faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="faq-content px-6">
+            <p class="text-gray-300 pb-4">Calineva supports up to 500 concurrent players on a single server, depending on the server hardware capabilities. Our optimized networking code ensures smooth gameplay even with high player counts.</p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 6 -->
+        <div class="faq-item bg-secondary/30 rounded-xl overflow-hidden border border-primary/20">
+          <button class="flex justify-between items-center w-full px-6 py-4 text-left">
+            <span class="text-lg font-medium text-white">Is the Android version the same as the PC version?</span>
+            <svg class="h-6 w-6 text-primary-light faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="faq-content px-6">
+            <p class="text-gray-300 pb-4">Yes, the Android version has feature parity with the PC version, allowing for seamless cross-platform play. The UI is optimized for touch controls on mobile devices, but all gameplay features remain consistent across platforms.</p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 7 -->
+        <div class="faq-item bg-secondary/30 rounded-xl overflow-hidden border border-primary/20">
+          <button class="flex justify-between items-center w-full px-6 py-4 text-left">
+            <span class="text-lg font-medium text-white">Why the name "Calineva"?</span>
+            <svg class="h-6 w-6 text-primary-light faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="faq-content px-6">
+            <p class="text-gray-300 pb-4">The name "Calineva" (pronounced /ˌkælɪˈnəˈvæ/) is a clever fusion that pays homage to the game's setting. In GTA San Andreas, the fictional state features three major cities: Los Santos (based on Los Angeles), San Fierro (based on San Francisco), and Las Venturras (based on Las Vegas). The name combines "Cali" from California (home to LA and SF) and "neva" from Nevada (where Vegas is located), creating a perfect blend that represents the game's diverse landscape and our commitment to bringing life to these iconic locations with the new multiplayer.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-12 bg-darker border-t border-primary/20">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div class="col-span-1 md:col-span-2">
+          <div class="flex items-center mb-4">
+            <img src="assets/images/calineva-logo.png" width="32" height="32" alt="Calineva" style="transform:rotate(45deg);"/>
+            <span class="ml-2 text-xl font-bold text-white">Calineva</span>
+          </div>
+          <p class="text-gray-400 mb-6 text-sm leading-relaxed">
+            Calineva is an independent modification framework for Grand Theft Auto: San Andreas. It is a fan-created project developed for entertainment and educational purposes. Calineva is not affiliated with, sponsored by, or endorsed by Rockstar Games, Rockstar North, or Take-Two Interactive Software, Inc.<br><br>
+            All trademarks, game assets, and intellectual property related to Grand Theft Auto: San Andreas are the sole property of their respective owners. Calineva does not distribute any files or content that would infringe on the rights of Rockstar Games, Take-Two Interactive, or any other entity. Users must legally own a copy of Grand Theft Auto: San Andreas to use this mod.<br><br>
+            The Calineva Authors and/or contributors are not responsible for any user-generated content or interactions that occur within third-party servers or through the use of this framework. All content, conduct, and interactions in these servers are managed solely by their respective administrators and participants. Users are encouraged to exercise caution and adhere to community guidelines when engaging with others online.<br><br>
+            By using Calineva, you acknowledge and agree to these terms.
+          </p>
+          <div class="flex space-x-4">
+            <a href="https://discord.gg/calineva" class="text-gray-400 hover:text-primary-light">
+              <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20.317 4.492c-1.53-.69-3.17-1.2-4.885-1.49a.075.075 0 0 0-.079.036c-.21.385-.403.775-.558 1.17a19.39 19.39 0 0 0-5.582 0 12.66 12.66 0 0 0-.565-1.17.077.077 0 0 0-.079-.036 20.29 20.29 0 0 0-4.885 1.49.07.07 0 0 0-.032.027C.533 9.058-.32 13.499.099 17.872a.082.082 0 0 0 .031.057 20.52 20.52 0 0 0 6.15 3.056.077.077 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.995a.076.076 0 0 0-.041-.106 13.61 13.61 0 0 1-1.939-.93.077.077 0 0 1-.008-.128c.13-.097.261-.198.386-.3a.074.074 0 0 1 .078-.01c3.927 1.79 8.18 1.79 12.061 0a.074.074 0 0 1 .078.01c.125.102.255.204.386.3a.077.077 0 0 1-.006.127c-.62.36-1.266.668-1.94.932a.076.076 0 0 0-.041.106c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 20.44 20.44 0 0 0 6.152-3.056.076.076 0 0 0 .032-.057c.5-5.177-.838-9.674-3.549-13.353a.06.06 0 0 0-.031-.027ZM8.02 15.33c-1.182 0-2.157-1.086-2.157-2.42 0-1.338.956-2.424 2.157-2.424 1.21 0 2.176 1.097 2.157 2.425 0 1.333-.956 2.42-2.157 2.42Zm7.975 0c-1.183 0-2.157-1.086-2.157-2.42 0-1.338.955-2.424 2.157-2.424 1.21 0 2.176 1.097 2.157 2.425 0 1.333-.946 2.42-2.157 2.42Z"/>
+              </svg>
+            </a>
+            <a href="https://github.com/calineva" class="text-gray-400 hover:text-primary-light">
+              <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+            </a>
+            <a href="https://t.me/calineva1" class="text-gray-400 hover:text-primary-light">
+              <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+              </svg>
+            </a>
+            <a href="https://x.com/calineva" class="text-gray-400 hover:text-primary-light">
+              <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/>
+              </svg>
+            </a>
+            <a href="https://youtube.com/calineva" class="text-gray-400 hover:text-primary-light">
+              <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-white font-semibold mb-4">Quick Links</h3>
+          <ul class="space-y-2">
+            <li><a href="#features" class="text-gray-400 hover:text-primary-light">Features</a></li>
+            <li><a href="#community" class="text-gray-400 hover:text-primary-light">Community</a></li>
+            <li><a href="#documentation" class="text-gray-400 hover:text-primary-light">Documentation</a></li>
+            <li><a href="#faq" class="text-gray-400 hover:text-primary-light">FAQ</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-primary-light">Branding</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-white font-semibold mb-4">Development</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-primary-light">API Reference</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-primary-light">Plugins</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-primary-light">Contribute</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-primary-light">Bug Reports</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-8 pt-8 border-t border-primary/20">
+        <div class="flex justify-between items-center">
+          <a href="mailto:hi@calineva.ir" class="text-gray-400 hover:text-primary-light flex items-center">
+            <span>hi@calineva.ir</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 transform rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+            </svg>
+          </a>
+          <div class="text-right text-xs text-gray-500">
+            <a href="#" class="hover:text-primary-light">Privacy Policy</a>
+            <span class="mx-1">|</span>
+            <a href="#" class="hover:text-primary-light">Terms of Service</a>
+          </div>
+        </div>
+        <p class="text-center text-gray-400 mt-4">
+          &copy; 2023-2025 <a href="https://ifarbod.ir" class="text-gray-400 hover:text-primary-light">iFarbod</a>. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Theme toggle functionality
+    const themeToggles = document.querySelectorAll('#theme-toggle, #theme-toggle-mobile');
+    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+    function setTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+      updateThemeIcons(theme);
+    }
+
+    function updateThemeIcons(theme) {
+      themeToggles.forEach(toggle => {
+        const icon = toggle.querySelector('svg');
+        if (theme === 'light') {
+          icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />';
+        } else {
+          icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />';
+        }
+      });
+    }
+
+    // Initialize theme
+    const savedTheme = localStorage.getItem('theme') || (prefersDarkScheme.matches ? 'dark' : 'light');
+    setTheme(savedTheme);
+
+    themeToggles.forEach(toggle => {
+      toggle.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        setTheme(currentTheme === 'light' ? 'dark' : 'light');
+      });
+    });
+
+    // Scroll up button functionality
+    const scrollUpBtn = document.createElement('div');
+    scrollUpBtn.className = 'scroll-up-btn';
+    scrollUpBtn.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+      </svg>
+    `;
+    document.body.appendChild(scrollUpBtn);
+
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        scrollUpBtn.classList.add('visible');
+      } else {
+        scrollUpBtn.classList.remove('visible');
+      }
+    });
+
+    scrollUpBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Mobile menu functionality
+    const mobileMenuBtn = document.querySelectorAll('.mobile-menu-btn');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const hamburger = document.querySelectorAll('.hamburger');
+    const body = document.body;
+
+    function toggleMobileMenu() {
+      mobileMenu.classList.toggle('active');
+      
+      // Toggle hamburger icon to X
+      hamburger.forEach(h => {
+        h.classList.toggle('active');
+      });
+      
+      // Prevent background scrolling when menu is open
+      body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+    }
+
+    if (mobileMenuBtn && mobileMenu && hamburger) {
+      mobileMenuBtn.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.stopPropagation(); // Prevent document click from immediately closing menu
+          toggleMobileMenu();
+        });
+      });
+
+      // Close mobile menu when clicking on a link
+      const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+      mobileMenuLinks.forEach(link => {
+        link.addEventListener('click', toggleMobileMenu);
+      });
+
+      // Close mobile menu when clicking outside
+      document.addEventListener('click', (e) => {
+        if (mobileMenu.classList.contains('active') &&
+            !mobileMenu.contains(e.target) &&
+            !Array.from(mobileMenuBtn).some(btn => btn.contains(e.target))) {
+          toggleMobileMenu();
+        }
+      });
+      
+      // Prevent clicks inside the menu from closing it
+      mobileMenu.addEventListener('click', (e) => {
+        e.stopPropagation();
+      });
+    }
+
+    // FAQ functionality with animations
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+      const button = item.querySelector('button');
+      const content = item.querySelector('.faq-content');
+
+      button.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+
+        // Close all other items
+        faqItems.forEach(otherItem => {
+          if (otherItem !== item) {
+            otherItem.classList.remove('active');
+            otherItem.querySelector('.faq-content').classList.remove('active');
+          }
+        });
+
+        // Toggle current item
+        item.classList.toggle('active');
+        content.classList.toggle('active');
+      });
+    });
+
+    // Player counter simulation
+    function updatePlayerCount() {
+      const counter = document.querySelector('.player-counter span');
+      if (counter) {
+        // Simulate random player count between 1000 and 2000
+        const count = Math.floor(Math.random() * 1000) + 1000;
+        counter.textContent = `${count.toLocaleString()} players online`;
+      }
+    }
+
+    // Update player count every 30 seconds
+    setInterval(updatePlayerCount, 30000);
+    updatePlayerCount(); // Initial update
+
+    // Handle system theme changes
+    prefersDarkScheme.addEventListener('change', (e) => {
+      if (!localStorage.getItem('theme')) {
+        setTheme(e.matches ? 'dark' : 'light');
+      }
+    });
+  </script>
+
+  <script>
+    // Slideshow functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const slides = document.querySelectorAll('.slide');
+      let currentSlide = 0;
+      let slideInterval;
+
+      function showSlide(n) {
+        // Remove active class from all slides
+        slides.forEach(slide => {
+          slide.classList.remove('active');
+        });
+
+        // Calculate new slide index
+        currentSlide = (n + slides.length) % slides.length;
+
+        // Add active class to current slide
+        slides[currentSlide].classList.add('active');
+      }
+
+      function nextSlide() {
+        showSlide(currentSlide + 1);
+      }
+
+      function startSlideshow() {
+        // Clear any existing interval
+        if (slideInterval) {
+          clearInterval(slideInterval);
+        }
+
+        // Start new interval
+        slideInterval = setInterval(nextSlide, 8000);
+      }
+
+      // Initialize first slide
+      showSlide(0);
+
+      // Start slideshow
+      startSlideshow();
+
+      // Pause slideshow when page is not visible
+      document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+          clearInterval(slideInterval);
+        } else {
+          startSlideshow();
+        }
+      });
+      
+      // Ensure images load completely for 4K displays
+      window.addEventListener('load', function() {
+        // Force a repaint after all resources are loaded
+        document.querySelectorAll('.slide img').forEach(img => {
+          img.classList.add('loaded');
+        });
+      });
+    });
+  </script>
+</body>
+</html>
